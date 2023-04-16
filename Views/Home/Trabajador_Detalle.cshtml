@@ -1,0 +1,84 @@
+﻿@model TrabajadoresPrueba.Models.ViewModels.TrabajadorVM
+@{
+    ViewData["Title"] = "Trabajador_Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if(Model.oTrabajador.Id == 0)
+{
+<h1>Creción Trabajador</h1>
+}
+else{
+        <h1>Editar Trabajador</h1>
+    }
+
+    <div class="row">
+        <div class="col-sm-4">
+
+            <form asp-action="Trabajador_Detalle" asp-controller="Home" method="post">
+                <input type="hidden" asp-for="oTrabajador.Id" />
+            <div class="mb-2">
+                <label class="form-label" asp-for="oTrabajador.TipoDocumento">Tipo Documeno</label>
+                <select class="form-select form-select-sm" asp-for="oTrabajador.TipoDocumento">
+                    <option selected >--Seleccione--</option>
+                    <option value="DNI">DNI</option>
+                    <option value="RUC">RUC</option>
+                    <option value="PASAPORTE">PASAPORTE</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                    <label class="form-label" asp-for="oTrabajador.NumeroDocumento">Numero Documeno</label>
+                    <input class="form-control form-control-sm" asp-for="oTrabajador.NumeroDocumento" type="number" /> 
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="oTrabajador.Nombres">Nombres</label>
+                <input class="form-control form-control-sm" asp-for="oTrabajador.Nombres" type="text" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="oTrabajador.Sexo">Sexo</label>
+                <select class="form-select form-select-sm" asp-for="oTrabajador.Sexo">
+                    <option selected>--Seleccione--</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="oTrabajador.IdDepartamento">Departamento</label>
+                <select class="form-select form-select-sm" asp-for="oTrabajador.IdDepartamento" asp-items="@Model.oListaDepartamento">
+                    <option selected disabled>--Seleccione--</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="oTrabajador.IdProvincia">Provincia</label>
+                <select class="form-select form-select-sm" asp-for="oTrabajador.IdProvincia" asp-items="@Model.oListaProvincia">
+                    <option selected disabled>--Cargando--</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="oTrabajador.IdDistrito">Distrito</label>
+                <select class="form-select form-select-sm" asp-for="oTrabajador.IdDistrito" asp-items="@Model.oListaDistrito">
+                    <option selected disabled>--Cargando--</option>
+                </select>
+            </div>
+
+            <div class="mb-2">
+                
+            
+            @if (Model.oTrabajador.Id == 0)
+            {
+                <button class="btn-primary btn-sm w-25" type="submit">Guardar</button>
+            }
+            else
+            {
+               <button class="btn-primary btn-sm w-25" type="submit">Actualizar</button>
+            }
+                <a class="btn btn-danger btn-sm" asp-action="Index" asp-controller="Home"
+                   >Volver</a>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+   

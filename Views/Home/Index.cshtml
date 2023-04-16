@@ -1,0 +1,49 @@
+﻿@model List<TrabajadoresPrueba.Models.Trabajadore>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" href="~/css/site.css"/>
+<div class="card">
+    <div class="card-header">
+            <h5 class="text-center">Listado de Trabajadores</h5>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-primary" asp-action="Trabajador_Detalle" asp-controller="Home" 
+            asp-route-idTrabajador="0">Nuevo Registro</a>
+            <hr />
+
+            <table class="table table-striped" id="listado">
+                <thead>
+                <tr class="text-center"> 
+                    <th>Tipo Documento</th>
+                    <th>Nro Documento</th>
+                    <th>Nombres</th>
+                    <th>Sexo</th>
+                    <th>Departamento</th>
+                    <th>Provincia</th>
+                    <th>Distrito</th>
+                    <th>Acción</th>
+                </tr>
+                </thead>
+               <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr class="text-center">
+                        <td>@item.TipoDocumento</td>
+                        <td>@item.NumeroDocumento</td>
+                        <td>@item.Nombres</td>
+                        <td>@item.Sexo</td>
+                        <td>@item.oDepartamento.NombreDepartamento</td>
+                        <td>@item.IdProvincia</td>
+                        <td>@item.IdDistrito</td>   
+                        <td>
+                            <a class="btn btn-warning btn-sm" asp-action="Trabajador_Detalle" asp-controller="Home" asp-route-idTrabajador="@item.Id">Editar</a>
+                            <a class="btn btn-danger btn-sm" asp-action="Eliminar" asp-controller="Home" asp-route-idTrabajador="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            </table>
+        </div>
+</div>
+
